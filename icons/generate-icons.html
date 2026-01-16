@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Icon Generator</title>
+</head>
+<body>
+  <h1>アイコン生成</h1>
+  <p>以下のボタンをクリックして、各サイズのアイコンをダウンロードしてください。</p>
+  <button onclick="generateIcon(16)">16x16アイコンをダウンロード</button>
+  <button onclick="generateIcon(32)">32x32アイコンをダウンロード</button>
+  <button onclick="generateIcon(48)">48x48アイコンをダウンロード</button>
+  <button onclick="generateIcon(128)">128x128アイコンをダウンロード</button>
+
+  <script>
+    function generateIcon(size) {
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      ctx.fillStyle = '#9a493f';
+      ctx.fillRect(0, 0, size, size);
+
+      // Draw a document icon
+      ctx.fillStyle = 'white';
+      const padding = size * 0.2;
+      const docWidth = size - padding * 2;
+      const docHeight = size - padding * 2;
+
+      ctx.fillRect(padding, padding, docWidth, docHeight);
+
+      // Draw lines representing text
+      ctx.fillStyle = '#9a493f';
+      const lineHeight = size * 0.08;
+      const lineMargin = size * 0.1;
+      const lineWidth = docWidth * 0.6;
+
+      for (let i = 0; i < 3; i++) {
+        ctx.fillRect(
+          padding + lineMargin,
+          padding + lineMargin + (i * lineHeight * 1.5),
+          lineWidth,
+          lineHeight * 0.4
+        );
+      }
+
+      // Convert to blob and download
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `icon${size}.png`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    }
+  </script>
+</body>
+</html>

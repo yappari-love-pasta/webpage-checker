@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Tech Stack Analyzer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🔍 Tech Stack Analyzer</h1>
+      <button id="refreshBtn" class="refresh-btn" title="再解析">🔄</button>
+    </header>
+
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>解析中...</p>
+    </div>
+
+    <div id="content" class="content" style="display: none;">
+      <!-- HTMLメタ情報 -->
+      <section class="section">
+        <h2 class="section-title">📄 HTMLメタ情報</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">タイトル:</span>
+            <span id="meta-title" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">文字コード:</span>
+            <span id="meta-charset" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">説明文:</span>
+            <span id="meta-description" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">キーワード:</span>
+            <span id="meta-keywords" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">ビューポート:</span>
+            <span id="meta-viewport" class="value">-</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- OGP情報 -->
+      <section class="section">
+        <h2 class="section-title">🌐 OGP情報</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">og:title:</span>
+            <span id="ogp-title" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">og:description:</span>
+            <span id="ogp-description" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">og:image:</span>
+            <span id="ogp-image" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">og:type:</span>
+            <span id="ogp-type" class="value">-</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- フレームワーク・ライブラリ -->
+      <section class="section">
+        <h2 class="section-title">⚛️ フレームワーク・ライブラリ</h2>
+        <div id="frameworks" class="tags-container"></div>
+      </section>
+
+      <!-- CMS・バックエンド -->
+      <section class="section">
+        <h2 class="section-title">🔧 CMS・バックエンド</h2>
+        <div id="cms" class="tags-container"></div>
+      </section>
+
+      <!-- サーバー・インフラ情報 -->
+      <section class="section">
+        <h2 class="section-title">🖥️ サーバー・インフラ情報</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">HTTPプロトコル:</span>
+            <span id="http-version" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Webサーバー:</span>
+            <span id="server-info" class="value">-</span>
+          </div>
+          <div class="info-item">
+            <span class="label">CDN/WAF:</span>
+            <span id="cdn-info" class="value">-</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="error" class="error" style="display: none;">
+      <p>❌ 解析に失敗しました。ページを再読み込みしてください。</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
